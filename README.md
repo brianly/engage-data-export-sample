@@ -12,11 +12,16 @@ Python 3.13.1 on Windows was used for the creation of this script, but it'll run
 
 Using this project you can get an idea of how the data export works with minimal options applied. It takes a start date for the export in the past and exports all available content until the current time. The feasibility of a successful import depends on how much content exists, so the threshold for the start date can vary widely. 
 
+Before running this script, you must [register an Application in Entra](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) and update these constants:
+
+- ```CLIENT_ID```: Take this verbatim from the Entra portal after creating an application.
+- ```AUTHORITY```: Replace the tenant ID on the end of the URL.
+
 In production use, it is best to use day or week intervals for the start and end dates. Adding a custom end date to this project is a simple exercise, but correctly generating other intervals is more involved. Token acquisition and export is combined to avoid persisting admin tokens on disk when running this script. In production use, you will need to securely store an admin token and refresh it so that you can avoid the need to authenticate on every run.
 
 Get familiar with Entra authentication and tokens by reviewing the [Yammer API with AAD tokens Postman Collection](https://techcommunity.microsoft.com/blog/viva_engage_blog/yammer-api-with-aad-tokens-postman-collection/857923) blog post and testing in Postman. Any HTTP client will work, but you'll have extract the endpoints from the downloadable collection on the blog. 
 
-Once you have the API working in Postman with the Entra application you registered then you are ready to use these scripts. If API calls are failing in Postman, fix those before moving on because it will simplify debugging.
+Once you have the API working in Postman with the Entra application you registered then you are ready to use this script. If API calls are failing in Postman, fix those before moving on because it will simplify debugging.
 
 ## Exporting content
 ### `network-export.py`
